@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { ArrowRight, Scale } from "lucide-react";
+
 const NLU_DATA = [
   { name: "NLSIU Bengaluru", city: "Bengaluru", general: 112, ews: 703, obc: 1541, sc: 3133, st: 3396 },
   { name: "NALSAR Hyderabad", city: "Hyderabad", general: 159, ews: 546, obc: 1219, sc: 3273, st: 3621 },
@@ -55,6 +56,7 @@ export default function CLATPredictor() {
   const [rank, setRank] = useState("");
   const [category, setCategory] = useState("general");
   const [results, setResults] = useState(null);
+  const resultsRef = useRef(null);
 
   function handlePredict() {
     const r = parseInt(rank, 10);
@@ -74,6 +76,10 @@ export default function CLATPredictor() {
 
     Object.values(tiers).forEach((list) => list.sort((a, b) => a.closing - b.closing));
     setResults({ rank: r, category, tiers });
+
+    setTimeout(() => {
+      resultsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 100);
   }
 
   const total = results ? results.tiers.safe.length + results.tiers.moderate.length + results.tiers.ambitious.length : 0;
@@ -165,7 +171,7 @@ export default function CLATPredictor() {
 
       {/* Results */}
       {results && (
-        <div className="w-full max-w-3xl mt-12">
+        <div ref={resultsRef} className="w-full max-w-3xl mt-12 scroll-mt-8">
           <div className="text-center mb-8">
             <h2 className="text-xl font-extrabold text-gray-900">Your Predicted Range</h2>
             <p className="text-xs font-semibold text-violet-500 tracking-wide mt-1">
