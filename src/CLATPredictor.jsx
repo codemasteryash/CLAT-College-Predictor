@@ -224,7 +224,7 @@ export default function CLATPredictor() {
   return (
     <div className="min-h-screen w-full bg-white flex flex-col items-center px-4 py-14">
       {/* Hero */}
-      <div className="w-full max-w-2xl text-center mb-10">
+      <div className="w-full max-w-2xl text-center mb-6">
         <div className="inline-flex items-center gap-1.5 bg-violet-50 text-violet-600 text-xs font-semibold px-3.5 py-1.5 rounded-full border border-violet-100 mb-6">
           <Scale size={13} strokeWidth={2.5} />
           CLAT College Predictor · 2026
@@ -257,7 +257,7 @@ export default function CLATPredictor() {
         </div>
       </div>
 
-      <div className="w-full max-w-md h-px bg-gray-100 mb-10"></div>
+      <div className="w-full max-w-md h-px bg-gray-100 mb-2"></div>
 
       {/* Intake card */}
       <div className="w-full max-w-md bg-white rounded-3xl shadow-xl shadow-gray-100 border border-gray-100 p-8">
